@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>GRINDSET</title>
+<meta name="description" content="Old-school MMO where the grind is the point. Skill 1 to 99, raid the Goblin King, trade rare drops for $GRIND.">
+<meta property="og:title" content="GRINDSET">
+<meta property="og:description" content="Old-school MMO where the grind is the point. Skill 1 to 99, raid the Goblin King, trade rare drops for $GRIND.">
+<meta property="og:image" content="og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og.jpg">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="world"></canvas>
+<canvas id="overlay"></canvas>
+
+<!-- LOADING -->
+<div id="loader">
+  <img class="load-logo" src="logo.webp" alt="GRINDSET">
+  <div class="load-bar"><i id="loadFill"></i><span id="loadTxt">Loading world - please wait</span></div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="hidden">
+  <div class="login-scroll">
+    <img class="login-logo" src="logo.webp" alt="GRINDSET">
+    <form class="stone login-box" id="loginForm" autocomplete="off">
+      <div class="lb-title">Welcome to Grindset</div>
+      <label class="lb-label" for="nameIn">Username:</label>
+      <input id="nameIn" name="username" maxlength="12" placeholder="type your name" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+      <div class="lb-label">Design your character:</div>
+      <div class="designer" id="designer"></div>
+      <button type="submit" class="rsbtn big" id="goBtn">Play Now</button>
+      <p class="ea-note">Early access: NPC players fill the world and the wallet is a demo until live multiplayer launches.</p>
+      <div class="lb-links" id="loginLinks"></div>
+    </form>
+    <div class="stone guide-box">
+      <div class="lb-title">How it works</div>
+      <ol class="steps">
+        <li><b>Click a tree, rock or fishing spot.</b> Your character works it for you and you gain XP. Every skill goes from level 1 to 99.</li>
+        <li><b>Full inventory?</b> Sell to the Shopkeeper for coins, then buy a better axe, pickaxe or harpoon from Smith Brunn.</li>
+        <li><b>Rare drops are worth real $GRIND.</b> Nests, gems, outfits, pets and party hats trade on the Grind Exchange.</li>
+        <li><b>The Goblin King</b> storms the pit up north every few minutes. Everyone fights him together for loot.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- GAME UI -->
+<div id="ui" class="hidden">
+  <div id="hover"></div>
+
+  <div id="mapbox">
+    <div class="orbs">
+      <button class="orb" id="orbGrind" title="Wallet"><i class="orb-ico grind"></i><b id="grindBal">0</b></button>
+      <button class="orb" id="orbCoins" title="Coins"><i class="orb-ico coins"></i><b id="coinBal">0</b></button>
+      <button class="orb" id="orbBoss" title="Goblin King"><i class="orb-ico boss"></i><b id="bossTime">0:00</b></button>
+    </div>
+    <div class="mapring">
+      <canvas id="mini" width="180" height="180"></canvas>
+      <button id="compass" title="Face north"><i id="compassNeedle"></i></button>
+    </div>
+    <div id="area" class="area"></div>
+  </div>
+  <div id="xpdrops"></div>
+
+  <div id="chatbox" class="parch">
+    <div id="chatLog"></div>
+    <div id="dialog" class="hidden"></div>
+    <form id="chatForm"><span id="chatName">you</span>: <input id="chatIn" maxlength="80" autocomplete="off" placeholder="Press Enter to chat"></form>
+    <div class="chat-tabs">
+      <button class="ct on" data-f="all">All</button><button class="ct" data-f="game">Game</button><button class="ct" data-f="pub">Public</button><button class="ct" data-f="trade">Trade</button>
+      <button class="ct hide-btn" id="chatHide" title="Hide chat">▾</button>
+    </div>
+  </div>
+
+  <div id="side" class="stone">
+    <div class="tabs" id="tabs"></div>
+    <div class="tab-body" id="tabBody"></div>
+  </div>
+
+  <div id="boost-pills"></div>
+</div>
+
+<div id="modal" class="hidden">
+  <div class="stone win">
+    <div class="win-head"><span id="modalTitle"></span><button id="modalX" class="xbtn" aria-label="Close">✕</button></div>
+    <div class="win-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div id="menu" class="hidden"></div>
+<div id="lvlup" class="hidden"></div>
+
+<script src="config.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
